@@ -73,6 +73,31 @@ $ git checkout gh-pages
 <p>I would like to thank<a href="https://github.com/NotYannis" class="user-mention">@NotYannis</a> for his contribution in the development of this site.</p>
 
 <h3>
+  <a name="starred-repositories" class ="anchor" href="#starred-repositeries"><span class="oticon oticon-link"></span></a>Starred Repositories</h3
+</h3>
+
+<p> <p>Starred repos&nbsp;:</p>
+<div id="liste"></div>
+<script type="text/javascript">
+    var target_elt = $('#liste');
+    var url = "https://api.github.com/users/grahack/starred";
+    var request = $.get(url, {}, function() {}, 'jsonp');
+    request.done(function(data) {
+        var ul = $('<ul/>').addClass('star-liste').appendTo(target_elt);
+        $.each(data.data, function(i, item) {
+            var li = $('<li/>').appendTo(ul);
+            $("<a/>").attr("href", item.html_url)
+                .attr("title", "un projet que j’affectionne")
+                .html(item.name)
+                .appendTo(target_elt).appendTo(li);
+            if ( i === 10 ) {  // max items
+                return false;
+            }
+        });
+    });
+</script></p>
+
+<h3>
 <a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
 
 <p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
